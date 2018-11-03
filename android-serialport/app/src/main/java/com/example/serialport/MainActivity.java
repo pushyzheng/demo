@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mSerialPortFinder = new SerialPortFinder();
         String[] entryValues = mSerialPortFinder.getAllDevicesPath();  // 得到所有设备文件地址的数组
         try {
-            mSerialPort = new SerialPort(new File("/dev/ttyUSB0"), 9600, 0);
+            mSerialPort = new SerialPort(new File("/dev/ttyS1"), 115200, 0);
         } catch (IOException e) {
             System.out.println("找不到该设备文件");
             e.printStackTrace();

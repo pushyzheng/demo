@@ -22,7 +22,7 @@ public class EchoServer {
                 .channel(NioServerSocketChannel.class)
                 .childHandler(new SimpleChannelInboundHandler<ByteBuf>() {
                     protected void messageReceived(ChannelHandlerContext ctx, ByteBuf msg) throws Exception {
-                        System.out.println("Server received : " + msg.toString(CharsetUtil.UTF_8));
+                        System.out.println("Received => " + msg.toString(CharsetUtil.UTF_8));
                     }
                 });
 

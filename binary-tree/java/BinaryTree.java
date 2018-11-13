@@ -1,5 +1,7 @@
 package datastructure.tree;
 
+import java.util.ArrayDeque;
+import java.util.Queue;
 import java.util.Scanner;
 import java.util.Stack;
 
@@ -86,9 +88,10 @@ public class BinaryTree {
     }
 
     /**
-     * 使用栈非递归实现二叉树的先序遍历
+     * 深度优先遍历，相当于先序遍历
+     * 使用栈非递归实现二叉树的遍历
      */
-    public static void front(Node root) {
+    public static void DFS(Node root) {
 
         if (root == null) {
             return;
@@ -111,6 +114,29 @@ public class BinaryTree {
         }
     }
 
+    /**
+     * 广度优先遍历
+     * 使用队列非递归的方式实现二叉树的遍历
+     */
+    public static void BFS(Node root) {
+        if (root == null) {
+            return;
+        }
+        Queue<Node> nodes = new ArrayDeque<>();
+        nodes.add(root);
+
+        while (!nodes.isEmpty()) {
+            Node temp = nodes.remove();
+            System.out.println("当前的子节点为： " + temp.data);
+            if (temp.left != null) {
+                nodes.add(temp.left);
+            }
+            if (temp.right != null) {
+                nodes.add(temp.right);
+            }
+        }
+    }
+
     public static void main(String[] args) {
         Node root = BinaryTree.createTree();
 
@@ -123,7 +149,9 @@ public class BinaryTree {
         System.out.println("\n后序遍历：");
         BinaryTree.postOrderTraverse(root);
 
-        BinaryTree.front(root);
+        BinaryTree.DFS(root);
+
+        BinaryTree.BFS(root);
     }
 
 }

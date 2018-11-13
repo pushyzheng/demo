@@ -102,7 +102,7 @@ public class BinaryTree {
         while (!nodes.isEmpty()) {
             // 取出栈顶元素，判断是否有子节点
             Node temp = nodes.pop();
-            System.out.println("当前子节点的值： " + temp.data);
+            System.out.print(temp.data);
 
             if (temp.right != null) {
                 nodes.push(temp.right);
@@ -127,7 +127,7 @@ public class BinaryTree {
 
         while (!nodes.isEmpty()) {
             Node temp = nodes.remove();
-            System.out.println("当前的子节点为： " + temp.data);
+            System.out.print(temp.data);
             if (temp.left != null) {
                 nodes.add(temp.left);
             }
@@ -149,8 +149,10 @@ public class BinaryTree {
         System.out.println("\n后序遍历：");
         BinaryTree.postOrderTraverse(root);
 
+        System.out.println("\n深度优先遍历：");
         BinaryTree.DFS(root);
 
+        System.out.println("\n广度优先遍历：");
         BinaryTree.BFS(root);
     }
 

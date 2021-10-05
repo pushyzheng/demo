@@ -1,0 +1,10 @@
+dubbo:
+  application:
+    name: dubbo-provider
+  registry:
+    address: zookeeper://127.0.0.1:2181
+  scan:
+    base-packages: org.example.rpc.dubbo.provider
+
+server:
+  port: 9001

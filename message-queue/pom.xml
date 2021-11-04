@@ -12,6 +12,8 @@
     <modules>
         <module>kafka</module>
         <module>pulsar</module>
+        <module>rocketmq</module>
+        <module>rabbitmq</module>
     </modules>
 
     <properties>

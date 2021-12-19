@@ -5,6 +5,13 @@ dubbo:
     address: zookeeper://127.0.0.1:2181
   scan:
     base-packages: org.example.rpc.dubbo.provider
+  provider:
+    # 只有请求消息派发到线程池，不含响应，响应和其它连接断开事件，心跳等消息，直接在 IO 线程上执行。
+    dispatcher: direct
+    # 类似于自己创建的自定义线程, 使用有界队列, 当队列满时会抛出异常
+    threadpool: eager
+    threads: 20
+    threadname: demo-dubbo-provider
 
 server:
   port: 9001

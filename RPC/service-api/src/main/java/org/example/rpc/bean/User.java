@@ -1,4 +1,4 @@
-package org.example.rpc.service;
+package org.example.rpc.bean;
 
 import lombok.Builder;
 import lombok.Data;

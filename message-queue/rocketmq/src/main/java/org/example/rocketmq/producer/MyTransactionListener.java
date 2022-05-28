@@ -5,8 +5,8 @@ import org.apache.rocketmq.client.producer.LocalTransactionState;
 import org.apache.rocketmq.client.producer.TransactionListener;
 import org.apache.rocketmq.common.message.Message;
 import org.apache.rocketmq.common.message.MessageExt;
-import org.example.rocketmq.common.JsonUtils;
-import org.example.rocketmq.common.Order;
+import org.example.common.bean.Order;
+import org.example.common.utils.JsonUtils;
 
 import java.util.Optional;
 

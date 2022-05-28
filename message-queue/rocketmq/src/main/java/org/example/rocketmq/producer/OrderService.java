@@ -1,8 +1,8 @@
 package org.example.rocketmq.producer;
 
 import lombok.extern.slf4j.Slf4j;
-import org.example.rocketmq.common.JsonUtils;
-import org.example.rocketmq.common.Order;
+import org.example.common.bean.Order;
+import org.example.common.utils.JsonUtils;
 
 @Slf4j
 public class OrderService {

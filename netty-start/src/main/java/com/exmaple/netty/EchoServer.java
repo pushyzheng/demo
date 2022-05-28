@@ -7,17 +7,17 @@ import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.util.CharsetUtil;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author Pushy
  * @since 2018/11/8 20:24
  */
+@Slf4j
 public class EchoServer {
 
     public static void main(String[] args) throws InterruptedException {
-
         NioEventLoopGroup group = new NioEventLoopGroup();
-
         ServerBootstrap b = new ServerBootstrap();
         b.group(group)
                 .channel(NioServerSocketChannel.class)
@@ -28,20 +28,14 @@ public class EchoServer {
                 });
 
         ChannelFuture f = b.bind("localhost", 8080).sync();
-
-        f.addListener(new ChannelFutureListener() {
-            @Override
-            public void operationComplete(ChannelFuture future) throws Exception {
-                if (future.isSuccess()) {
-                    System.out.println("Running on localhost:8080.");
-                } else {
-                    System.out.println("Bind error.");
-                }
+        f.addListener(future -> {
+            if (future.isSuccess()) {
+                log.info("Running on localhost:8080.");
+            } else {
+                log.info("Bind error.");
             }
         });
-
         f.channel().closeFuture().sync();
-
         group.shutdownGracefully();
     }
 

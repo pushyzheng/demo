@@ -12,6 +12,7 @@
     <modules>
         <module>dubbo-springboot</module>
         <module>service-api</module>
+        <module>grpc</module>
     </modules>
 
     <properties>

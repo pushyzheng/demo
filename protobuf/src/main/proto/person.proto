@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package org.example.demo.protobuf;
+
+option java_package = "org.example.demo.protobuf";  // 指定包名
+option java_outer_classname = "PersonProto";
+option java_multiple_files = true;  // 将会生成多个文件
+
+message Person {
+  int32 id = 1;
+  string name = 2;
+  string email = 3;
+  LanguageType motherTongue = 4;
+
+  enum LanguageType {
+    ENGLISH = 0;
+    CHINESE = 1;
+  }
+}

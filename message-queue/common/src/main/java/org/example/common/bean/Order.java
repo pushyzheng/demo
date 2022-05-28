@@ -1,4 +1,4 @@
-package org.example.rocketmq.common;
+package org.example.common.bean;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

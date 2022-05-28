@@ -1,16 +1,19 @@
-package org.example.rocketmq.common;
+package org.example.common.utils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.vavr.control.Try;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.Optional;
 
+@Slf4j
 public class JsonUtils {
 
     private static final ObjectMapper mapper = new ObjectMapper();
 
     public static String toJson(Object obj) {
         return Try.of(() -> mapper.writeValueAsString(obj))
+                .onFailure(throwable -> log.error("toJson error", throwable))
                 .getOrElse("");
     }
 

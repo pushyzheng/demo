@@ -4,10 +4,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.client.producer.SendResult;
 import org.apache.rocketmq.client.producer.TransactionMQProducer;
 import org.apache.rocketmq.common.message.Message;
-import org.example.rocketmq.common.JsonUtils;
-import org.example.rocketmq.common.Order;
+import org.example.common.bean.Order;
+import org.example.common.utils.JsonUtils;
 
 import java.nio.charset.StandardCharsets;
+import java.util.Random;
 
 @Slf4j
 public class RocketMQProducer {
@@ -35,6 +36,6 @@ public class RocketMQProducer {
     }
 
     private static long getOrderNumber() {
-        return 0;
+        return new Random().nextLong();
     }
 }

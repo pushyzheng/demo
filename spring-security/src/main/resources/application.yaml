@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: spring-security
+  redis:
+    host: localhost
+    port: 6379
+

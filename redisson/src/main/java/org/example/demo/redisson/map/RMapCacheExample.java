@@ -5,6 +5,9 @@ import org.redisson.api.RMapCache;
 
 import java.util.concurrent.TimeUnit;
 
+/**
+ * 让 field 具备驱逐的能力
+ */
 public class RMapCacheExample {
 
     public static void main(String[] args) {

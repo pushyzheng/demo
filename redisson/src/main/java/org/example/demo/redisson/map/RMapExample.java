@@ -15,6 +15,7 @@ public class RMapExample {
             map.put("a", 1);
             log.info("a = {}", map.get("a"));
 
+            // 异步的方式
             map.getAsync("a").thenAccept(result -> log.info("async a={}", result));
         });
     }

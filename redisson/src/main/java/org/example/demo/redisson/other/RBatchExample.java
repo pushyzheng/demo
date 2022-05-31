@@ -1,4 +1,4 @@
-package org.example.demo.redisson.batch;
+package org.example.demo.redisson.other;
 
 import org.example.demo.redisson.Redissons;
 import org.redisson.api.RBatch;

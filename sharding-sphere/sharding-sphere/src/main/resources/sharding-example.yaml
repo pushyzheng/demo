@@ -1,0 +1,56 @@
+spring:
+  shardingsphere:
+    datasource:
+      names: '# 省略数据源配置，请参考使用手册'
+    rules:
+      sharding:
+        auto-tables:
+          <auto-table-name>:
+            actual-data-sources: '# 数据源名'
+            sharding-strategy:
+              standard:
+                sharding-algorithm-name: '# 自动分片算法名称'
+                sharding-column: '# 分片列名称'
+        binding-tables:
+          - '# 绑定表规则列表'
+          - '# 绑定表规则列表'
+        binding-tables[x]: '# 绑定表规则列表'
+        broadcast-tables:
+          - '# 广播表规则列表'
+          - '# 广播表规则列表'
+        broadcast-tables[x]: '# 广播表规则列表'
+        key-generators:
+          <key-generate-algorithm-name>:
+            props:
+              xxx: '# 分布式序列算法属性配置'
+            type: '# 分布式序列算法类型'
+        sharding-algorithms:
+          <sharding-algorithm-name>:
+            props:
+              xxx: '# 分片算法属性配置'
+            type: '# 分片算法类型'
+        tables:
+          <table-name>:
+            actual-data-nodes: '# 由数据源名 + 表名组成，以小数点分隔。多个表以逗号分隔，支持 inline 表达式。缺省表示使用已知数据源与逻辑表名称生成数据节点，用于广播表（即每个库中都需要一个同样的表用于关联查询，多为字典表）或只分库不分表且所有库的表结构完全一致的情况'
+            database-strategy:
+              complex:
+                sharding-algorithm-name: '# 分片算法名称'
+                sharding-columns: '# 分片列名称，多个列以逗号分隔'
+              hint:
+                sharding-algorithm-name: '# 分片算法名称'
+              standard:
+                sharding-algorithm-name: '# 分片算法名称'
+                sharding-column: '# 分片列名称'
+            key-generate-strategy:
+              column: '# 分布式序列列名称'
+              key-generator-name: '# 分布式序列算法名称'
+            table-strategy:
+              xxx: '# 省略'
+    sharding:
+      default-database-strategy:
+        xxx: '# 默认数据库分片策略'
+      default-key-generate-strategy:
+        xxx: '# 默认分布式序列策略'
+      default-sharding-column: '# 默认分片列名称'
+      default-table-strategy:
+        xxx: '# 默认表分片策略'

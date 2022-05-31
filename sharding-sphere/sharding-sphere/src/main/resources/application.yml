@@ -1,0 +1,81 @@
+spring:
+  application:
+    name: sharding-sphere
+
+  datasource:
+    # 不分片, 单数据源
+    no-sharding:
+      type: com.zaxxer.hikari.HikariDataSource
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username: root
+      password: 12345678
+      jdbc-url: jdbc:mysql://localhost:3306/db1?serverTimezone=GMT%2B8
+
+  shardingsphere:
+    # 开启
+    enabled: true
+    # 分片, 多数据源配置
+    datasource:
+      # 对两个 datasource 分别取名
+      names: db0,db1
+      db0:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        username: root
+        password: 12345678
+        jdbc-url: jdbc:mysql://localhost:3306/db1?serverTimezone=GMT%2B8
+      db1:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        username: root
+        password: 12345678
+        jdbc-url: jdbc:mysql://localhost:3306/db2?serverTimezone=GMT%2B8
+    # 分片规则
+    sharding:
+      tables:
+        # `t_user` 表的规则
+        t_user:
+          # 主键生成的策略, 这里使用雪花算法
+          key-generator:
+            column: id
+            type: SNOWFLAKE
+          # 分库策略
+          database-strategy:
+            standard:
+              # 按照 ID 进行分片
+              sharding-column: id
+              # 分片的算法
+              precise-algorithm-class-name: org.example.demo.sharding.dao.sharding.UserDatabasePreciseShardingAlgorithm
+
+        # `t_order` 表的规则
+        t_order:
+          # 数据存储的范围
+          actual-data-nodes: db${0..1}.t_order_${0..2}
+          database-strategy:
+            standard:
+              sharding-column: user_id
+              precise-algorithm-class-name: org.example.demo.sharding.dao.sharding.OrderDatabasePreciseShardingAlgorithm
+          # 分表策略
+          table-strategy:
+            standard:
+              # 按照 order_id 进行分片
+              sharding-column: order_num
+              # 分片的算法
+              precise-algorithm-class-name: org.example.demo.sharding.dao.sharding.OrderTablePreciseShardingAlgorithm
+
+        # `t_post` 表的规则
+        t_post:
+          key-generator:
+            column: id
+            type: SNOWFLAKE
+          database-strategy:
+            hint:
+              algorithm-class-name: org.example.demo.sharding.dao.sharding.PostDatabaseHintShardingAlgorithm
+    # 额外的属性
+    props:
+      sql.show: true
+
+logging:
+  level:
+    # 开启 jooq 的 SQL
+    org.jooq.tools.LoggerListener: DEBUG

@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: micrometer-demo
+  profiles:
+    active: dev
+
+management:
+  endpoints:
+    web:
+      exposure:
+        # 打开所有的监控点
+        # 详细可暴露的名称参考: https://docs.spring.io/spring-boot/docs/current/actuator-api/htmlsingle/#overview
+        include: "*"
+
+      # 配置路径 URI 的前缀
+      base-path: /actuator
+
+  metrics:
+    # 一些通用的 tags
+    tags:
+      application: ${spring.application.name}
+    export:
+      prometheus:
+        enabled: true
+  endpoint:
+    shutdown:
+      # 启用接口关闭 Spring Boot
+      enabled: true

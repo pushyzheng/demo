@@ -1,6 +1,7 @@
 package org.example.demo.sharding.config;
 
 import com.zaxxer.hikari.HikariDataSource;
+import org.apache.shardingsphere.shardingjdbc.jdbc.core.datasource.ShardingDataSource;
 import org.jooq.DSLContext;
 import org.jooq.SQLDialect;
 import org.jooq.conf.Settings;

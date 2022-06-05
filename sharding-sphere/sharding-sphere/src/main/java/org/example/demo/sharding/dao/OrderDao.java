@@ -2,23 +2,18 @@ package org.example.demo.sharding.dao;
 
 import org.example.demo.sharding.dao.tables.TOrder;
 import org.example.demo.sharding.model.dto.OrderDTO;
-import org.jooq.DSLContext;
 import org.jooq.Record;
 import org.jooq.Result;
 import org.springframework.stereotype.Repository;
 
-import javax.annotation.Resource;
-
 @Repository
-public class OrderDao {
-
-    @Resource(name = "shardingDsl")
-    private DSLContext dslContext;
+public class OrderDao extends BaseDao{
 
     private static final TOrder TABLE = Tables.T_ORDER;
 
     public boolean saveOrder(OrderDTO orderDTO) {
-        return dslContext.insertInto(TABLE)
+        return getShardingDslCtx()
+                .insertInto(TABLE)
                 .set(TABLE.ORDER_NUM, orderDTO.getOrderNum())
                 .set(TABLE.USER_ID, orderDTO.getUserId())
                 .set(TABLE.CHANNEL, orderDTO.getChannel())
@@ -26,7 +21,8 @@ public class OrderDao {
     }
 
     public OrderDTO getByOrderNum(long orderNum) {
-        Result<Record> fetch = dslContext.select()
+        Result<Record> fetch = getShardingDslCtx()
+                .select()
                 .from(TABLE)
                 .where(TABLE.ORDER_NUM.equal(orderNum))
                 .fetch();

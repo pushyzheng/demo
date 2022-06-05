@@ -35,17 +35,11 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- 使用 spring-boot-starter-jooq, 则会读取 datasource, 然后自动向
+            容器注册 DSLContext 对象 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jooq</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.jooq</groupId>
-            <artifactId>jooq-meta</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.jooq</groupId>
-            <artifactId>jooq-codegen</artifactId>
         </dependency>
 
         <dependency>
@@ -84,7 +78,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <configurationFile>src/main/resources/jooqConfig.xml</configurationFile>
+                    <configurationFile>src/main/resources/jooq-codegen.xml</configurationFile>
                 </configuration>
             </plugin>
         </plugins>

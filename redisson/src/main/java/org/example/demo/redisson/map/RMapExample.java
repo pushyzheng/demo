@@ -15,6 +15,10 @@ public class RMapExample {
             map.put("a", 1);
             log.info("a = {}", map.get("a"));
 
+            if (map.containsKey("a")) {
+                System.out.println("contains a");
+            }
+
             // 异步的方式
             map.getAsync("a").thenAccept(result -> log.info("async a={}", result));
         });

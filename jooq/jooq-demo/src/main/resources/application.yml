@@ -4,3 +4,8 @@ spring:
     password:
     url: jdbc:mysql://localhost:3306/demo?serverTimezone=UTC
     driver-class-name: com.mysql.cj.jdbc.Driver
+
+logging:
+  level:
+    # 开启 jooq 的 SQL
+    org.jooq.tools.LoggerListener: DEBUG

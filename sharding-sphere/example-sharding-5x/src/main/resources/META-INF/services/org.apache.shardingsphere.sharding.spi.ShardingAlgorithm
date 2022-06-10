@@ -1,0 +1,4 @@
+org.example.demo.sharding.dao.sharding.OrderDatabasePreciseShardingAlgorithm
+org.example.demo.sharding.dao.sharding.OrderTablePreciseShardingAlgorithm
+org.example.demo.sharding.dao.sharding.PostDatabaseHintShardingAlgorithm
+org.example.demo.sharding.dao.sharding.UserDatabasePreciseShardingAlgorithm

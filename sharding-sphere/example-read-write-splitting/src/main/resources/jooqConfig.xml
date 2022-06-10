@@ -3,7 +3,7 @@
 
     <jdbc>
         <driver>com.mysql.cj.jdbc.Driver</driver>
-        <url>jdbc:mysql://localhost:3306/demo</url>
+        <url>jdbc:mysql://localhost:3306/db1</url>
         <user>root</user>
         <password/>
     </jdbc>
@@ -11,28 +11,16 @@
     <generator>
         <name>org.jooq.codegen.JavaGenerator</name>
 
-        <!-- 生成的一些配置 -->
-        <generate>
-            <pojos>true</pojos>
-            <pojosEqualsAndHashCode>true</pojosEqualsAndHashCode>
-            <pojosToString>true</pojosToString>
-
-            <interfaces>true</interfaces>
-
-            <daos>true</daos>
-        </generate>
-
         <!-- 需要生成的表配置 -->
         <database>
             <name>org.jooq.meta.mysql.MySQLDatabase</name>
-            <inputSchema>demo</inputSchema>
-            <includes>t_user|t_post</includes>
-            <excludes/>
+            <inputSchema>db1</inputSchema>
+            <includes>t_user</includes>
         </database>
 
         <!-- 输出地址配置 -->
         <target>
-            <packageName>org.example.demo.jooq.dao</packageName>
+            <packageName>org.example.example.rws.dao</packageName>
             <directory>src/main/generated</directory>
         </target>
     </generator>

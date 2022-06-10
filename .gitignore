@@ -120,3 +120,4 @@ venv.bak/
 /captures
 .externalNativeBuild
 generated
+firebase/registration-token.txt

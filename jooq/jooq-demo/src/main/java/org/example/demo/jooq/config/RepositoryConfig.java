@@ -1,5 +1,6 @@
 package org.example.demo.jooq.config;
 
+import org.example.demo.jooq.dao.tables.daos.TPostDao;
 import org.example.demo.jooq.dao.tables.daos.TUserDao;
 import org.jooq.DSLContext;
 import org.springframework.context.annotation.Bean;
@@ -19,5 +20,10 @@ public class RepositoryConfig {
     @Bean
     public TUserDao tUserDao() {
         return new TUserDao(dslContext.configuration());
+    }
+
+    @Bean
+    public TPostDao tPostDao() {
+        return new TPostDao(dslContext.configuration());
     }
 }

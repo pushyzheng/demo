@@ -7,6 +7,7 @@ import org.example.demo.jooq.service.UserService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * 使用生成的 DAO 类 {@link TUserDao} 来实现
@@ -44,5 +45,10 @@ public class DaoUserServiceImpl implements UserService {
         result.setPassword(tUser.getPassword());
         result.setGender(tUser.getGender());
         return result;
+    }
+
+    @Override
+    public List<UserDTO> listById(List<Long> idList) {
+        throw new UnsupportedOperationException();
     }
 }

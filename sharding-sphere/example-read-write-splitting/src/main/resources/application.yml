@@ -1,0 +1,44 @@
+spring:
+  application:
+    name: example-read-write-splitting
+
+  shardingsphere:
+    # 开启
+    enabled: true
+    # 分片, 多数据源配置
+    datasource:
+      # 对两个 datasource 分别取名
+      names: master,slave0,slave1
+      master:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        username: root
+        password:
+        jdbc-url: jdbc:mysql://localhost:3306/db1?serverTimezone=GMT%2B8
+      slave0:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        username: root
+        password:
+        jdbc-url: jdbc:mysql://localhost:3306/db2?serverTimezone=GMT%2B8
+        url: jdbc:mysql://localhost:3306/db2?serverTimezone=GMT%2B8
+      slave1:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        username: root
+        password:
+        jdbc-url: jdbc:mysql://localhost:3306/db3?serverTimezone=GMT%2B8
+        url: jdbc:mysql://localhost:3306/db3?serverTimezone=GMT%2B8
+
+    # 读写分离配置
+    masterslave:
+      name: ms
+      # 主库
+      master-data-source-name: master
+      # 从库
+      slave-data-source-names: slave0,slave1
+
+    # 额外的属性
+    props:
+      # 展示真实的查询 SQL
+      sql.show: true

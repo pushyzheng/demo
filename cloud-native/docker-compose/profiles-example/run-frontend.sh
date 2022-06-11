@@ -1,1 +1,0 @@
-docker compose --profile frontend up

@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: java-web
+
+spec:
+  # 并不是一个普通容器，而是一个初始化的容器
+  # 比 spec.containers 定义的所有用户容器先启动
+  initContainers:
+    - image: pushyzheng/webapp-example:latest
+      name: java-war
+      command: [ "cp", "webapp.war", "/app" ]
+      # 将 app-volume 挂载到自己的 /app 目录下
+      volumeMounts:
+        - mountPath: /app
+          name: app-volume
+
+  containers:
+    # 标准的 Tomcat 镜像
+    - image: tomcat:7.0
+      name: tomcat-server
+      command: [ "sh","-c","/usr/local/tomcat/bin/catalina.sh run"]
+      ports:
+        - containerPort: 8080
+          hostPort: 8081
+
+      # 将 app-volume 挂载到自己的 /root/apache-tomcat-7.0.42-v2/webapps 目录下
+      # 这样由 'java-war' 容器复制的 sample.war 就会存在于 webapps 目录下
+      volumeMounts:
+        - mountPath: /usr/local/tomcat/webapps
+          name: app-volume
+
+  # 定义 volume
+  volumes:
+    - name: app-volume
+      emptyDir: { }

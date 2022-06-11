@@ -11,7 +11,6 @@ services:
     depends_on:
       - redis-server
 
-  # golang-redis-quickstart 服务
   redis-server:
     container_name: redis-server
     image: "redis:alpine"
@@ -26,6 +25,7 @@ services:
       - "18080:80"
     depends_on:
       - redis-server
+    # 仅当指定了 debug 的 profile 时才启动服务
     profiles:
       - debug
 
@@ -38,5 +38,6 @@ services:
       - ./frontend:/usr/share/nginx/html
     depends_on:
       - backend
+    # 仅当指定了 debug 的 frontend 时才启动服务
     profiles:
       - frontend

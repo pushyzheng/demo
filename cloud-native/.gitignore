@@ -1,3 +1,4 @@
 docker/golang-quickstart/main
 docker/nginx/logs
-main
+docker-compose/golang-redis-quickstart/main
+k8s/projected-volume-example/secret/app/main

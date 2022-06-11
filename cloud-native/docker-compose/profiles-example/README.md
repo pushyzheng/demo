@@ -8,9 +8,11 @@
 
 ```shell
 $ docker compose --profile debug up
+or 
+$ zsh ./run.sh debug
 ```
 
-![](images/WechatIMG681.png)
+![](static/WechatIMG681.png)
 
 ## frontend
 
@@ -18,6 +20,8 @@ $ docker compose --profile debug up
 
 ```shell
 $ docker compose --profile frontend
+or 
+$ zsh ./run.sh frontend
 ```
 
-![](images/WX20220612-000518@2x.png)
+![](static/WX20220612-000518@2x.png)

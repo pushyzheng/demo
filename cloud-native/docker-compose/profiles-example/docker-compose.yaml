@@ -1,0 +1,42 @@
+version: "3.3"
+
+services:
+  backend:
+    container_name: backend
+    image: pushyzheng/golang-redis-quickstart
+    ports:
+      - "9000:9000"
+    environment:
+      env: prod
+    depends_on:
+      - redis-server
+
+  # golang-redis-quickstart 服务
+  redis-server:
+    container_name: redis-server
+    image: "redis:alpine"
+
+  php-redis-admin:
+    build: .
+    image: faktiva/php-redis-admin
+    container_name: php-redis-admin
+    environment:
+      - PHPREDMIN_DATABASE_REDIS_0_HOST=redis-server
+    ports:
+      - "18080:80"
+    depends_on:
+      - redis-server
+    profiles:
+      - debug
+
+  frontend:
+    image: nginx
+    container_name: frontend
+    ports:
+      - "9001:80"
+    volumes:
+      - ./frontend:/usr/share/nginx/html
+    depends_on:
+      - backend
+    profiles:
+      - frontend

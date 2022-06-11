@@ -1,0 +1,22 @@
+version: "3.3"
+
+services:
+  # 从本地镜像构建的 Web 服务
+  app:
+    container_name: golang-app
+    build: .
+    ports:
+      - "9000:9000"
+
+    # 依赖于 golang-redis-quickstart 服务， 所有会等待 golang-redis-quickstart 服务启动完成之后
+    # 再开始运行
+    depends_on:
+      - redis-server
+
+    # 系统环境变量
+    environment:
+      env: prod
+
+  # golang-redis-quickstart 服务
+  redis-server:
+    image: "redis:alpine"
